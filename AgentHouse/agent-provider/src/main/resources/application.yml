@@ -1,0 +1,65 @@
+server:
+  port: 9508
+  servlet:
+    context-path: /agent
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    max-connections: 30000
+    accept-count: 1000
+spring:
+  application:
+    name: agent-house
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      write-dates-as-timestamps: false
+  datasource:
+    druid:
+      max-wait: 60000
+      time-between-connect-error-millis: 300000
+      min-evictable-idle-time-millis: 300000
+      validation-query: 'SELECT 1 FROM DUAL'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      connection-init-sqls: 'SET SESSION group_concat_max_len = 3300000'
+      connection-error-retry-attempts: 3
+      break-after-acquire-failure: true
+      async-init: true
+  redis:
+    #host: 127.0.0.1
+    #password: 123456
+    lettuce:
+      pool:
+        max-active: 5
+        max-wait: -1
+        max-idle: 3
+        min-idle: 1
+  freemarker:
+    cache: true
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+# 自定义配置
+agent:
+  # 支持链
+  dynamicDataSource:
+    default:
+      url: jdbc:mysql://127.0.0.1:3306/agent_house?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: root
+
+  log:
+    path: ./log
+    level: INFO
+
+  disruptor:
+    event-queue-buffer-size: 2048
+
+
+
