@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public BaseResponse<UserVO> addUser(UserVO user) {
         final LambdaQueryWrapper<UserDO> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(UserDO::getAddress,user.getAddress());
         final UserDO userDO = userMapper.selectOne(queryWrapper);
         if (userDO != null) {
             return BaseResponse.failed(BizCodeEnum.BIZ_ERROR_EXISTING_USER.getCode(), BizCodeEnum.BIZ_ERROR_EXISTING_USER.getMessage());
