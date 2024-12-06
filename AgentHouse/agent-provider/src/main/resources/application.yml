@@ -61,5 +61,13 @@ agent:
   disruptor:
     event-queue-buffer-size: 2048
 
+network:
+  agent:
+    trump:
+      api-url: http://localhost:3000/trump
+    tate:
+      api-url: http://localhost:3001/tate
+    eternal:
+      api-url: http://localhost:3002/eternal
 
 

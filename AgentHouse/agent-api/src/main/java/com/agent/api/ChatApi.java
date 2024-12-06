@@ -32,4 +32,7 @@ public interface ChatApi {
     @GetMapping(value = "/api/v1/chat/popularity")
     public BaseResponse<List<ChatPopularVO>> getChatPopularity();
 
+    @GetMapping(value = "/api/v1/chat/topic")
+    public BaseResponse initTopic(@RequestParam String topic);
+
 }

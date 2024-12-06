@@ -8,6 +8,7 @@ import com.agent.common.model.BaseResponse;
 import com.agent.common.util.BigDecimalUtil;
 import com.agent.provider.mapper.ChatMapper;
 import com.agent.provider.model.db.ChatDO;
+import com.agent.provider.schedule.Topic;
 import com.agent.provider.service.ChatService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.extern.slf4j.Slf4j;
@@ -63,7 +64,8 @@ public class ChatServiceImpl implements ChatService {
         queryWrapper.select(ChatDO::getChatId);
 
         final List<ChatDO> chatDOList = chatMapper.selectList(queryWrapper);
-        return BaseResponse.of(chatDOList.stream().map(ChatDO::getChatId).collect(Collectors.toList()));
+        List<String> chatIdList = new ArrayList<String>(chatDOList.stream().map(ChatDO::getChatId).collect(Collectors.toSet()));
+        return BaseResponse.of(chatIdList);
     }
 
     @Override
@@ -89,6 +91,12 @@ public class ChatServiceImpl implements ChatService {
             popularVOS.add(popularVO);
         }
         return BaseResponse.of(popularVOS);
+    }
+
+    @Override
+    public BaseResponse setTopic(String topic) {
+        Topic.topic=topic;
+        return BaseResponse.success();
     }
 
     private ChatDO convert2DO(ChatVO chatVO) {

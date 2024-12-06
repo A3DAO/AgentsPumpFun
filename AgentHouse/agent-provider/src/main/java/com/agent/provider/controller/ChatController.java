@@ -42,4 +42,10 @@ public class ChatController implements ChatApi {
     public BaseResponse<List<ChatPopularVO>> getChatPopularity() {
         return chatService.getChatPopularity();
     }
+
+    @Override
+    public BaseResponse initTopic(String topic) {
+        chatService.setTopic(topic);
+        return BaseResponse.success();
+    }
 }

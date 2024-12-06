@@ -26,4 +26,6 @@ public interface ChatService {
     BaseResponse<List<ChatVO>> getChatList(String ChatId);
 
     BaseResponse<List<ChatPopularVO>> getChatPopularity();
+
+    BaseResponse  setTopic(String topic);
 }

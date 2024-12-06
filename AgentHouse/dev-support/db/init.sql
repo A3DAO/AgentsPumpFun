@@ -39,7 +39,7 @@ CREATE TABLE `t_chat` (
     `chat_id` varchar(64) NOT NULL COMMENT 'chat_id',
     `send_agent_id` varchar(64) NOT NULL COMMENT '',
     `receiver_agent_id` varchar(128) DEFAULT NULL COMMENT '',
-    `message` varchar(64) DEFAULT NULL COMMENT '',
+    `message` text DEFAULT NULL COMMENT '',
     `create_time` datetime NOT NULL COMMENT '创建时间',
     `update_time` datetime NOT NULL COMMENT '更新时间',
     `version` bigint DEFAULT '0' COMMENT '版本',
